@@ -1,0 +1,36 @@
+<!-- 2 parada 1 intro -->
+<article class="page duo" data-key="p1a" data-chip="2" style="--sc:var(--c1)">
+  <div class="col">
+    <div class="head" data-in><span class="badge">1</span><div><div class="eyebrow">Parada 1 · La pubertad</div><h2>Mi cuerpo va a cambiar</h2></div></div>
+    <p class="lead" data-in>La <b>pubertad</b> es la etapa en la que el cuerpo de niña o niño empieza a convertirse en cuerpo de adulto. Pasa poco a poco, más o menos entre los 8 y los 14 años.</p>
+    <p data-in>A cada quien le llega a su tiempo. ¡No es una carrera! Unas empiezan antes y otras después, y todas está bien.</p>
+    <details class="dad" data-in><summary>Nota para papá</summary>
+      <p>Pregúntale qué cambios ha notado en sus compañeras o en ella. Si la menstruación está cerca, ten toallas femeninas en casa y explícale cómo se usan antes de que llegue.</p>
+    </details>
+  </div>
+  <div class="col visual">
+    <!-- Tabla de estaturas: la dibuja assets/js/paradas/pubertad.js -->
+    <figure class="grow-chart" data-in>
+      <div class="art" id="growArt"></div>
+      <figcaption class="grow-say" id="growSay" aria-live="polite">Toca a cada una para saber en qué etapa está.</figcaption>
+    </figure>
+  </div>
+  <div class="pnum">3</div>
+</article>
+
+<!-- 3 parada 1 juego -->
+<article class="page duo" data-key="p1b" data-chip="2" style="--sc:var(--c1)">
+  <div class="col">
+    <div class="eyebrow" data-in>Toca cada dibujo</div>
+    <h2 data-in>¿Qué cambia?</h2>
+    <div class="toggle" role="group" aria-label="Elegir cambios" data-in>
+      <button type="button" id="tgGirls" aria-pressed="true">En las niñas</button>
+      <button type="button" id="tgBoys" aria-pressed="false">En los niños</button>
+    </div>
+    <div class="info" id="info" aria-live="polite" data-in><h3 id="infoT">Elige un dibujo</h3><p id="infoB">Toca cualquiera de los seis para descubrir qué le pasa al cuerpo. Abre 3 para ganar tu sello.</p></div>
+  </div>
+  <div class="col">
+    <div class="tiles" id="tiles" data-in></div>
+  </div>
+  <div class="pnum">4</div>
+</article>

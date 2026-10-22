@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El Gran Viaje del Cuerpo</title>
+<meta name="description" content="Libro interactivo para leer con papá: pubertad, fecundación, embarazo, decidir cuándo y cuidar el propio cuerpo.">
+<meta name="theme-color" content="#22407A">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<!-- Fuentes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+
+<!-- Estilos: del más general al más específico -->
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/book.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/paradas.css">
+<link rel="stylesheet" href="assets/css/modo3d.css">
+
+<!-- Three.js para el modo 3D de la parada 2. El import map no descarga nada:
+     solo dice de dónde sacar "three" cuando alguien pulse "Ver en 3D". -->
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+
+<!-- GSAP (defer = no bloquea el render; se ejecuta antes del módulo main.js) -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+<script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">El gran viaje del cuerpo</div>
+    <div class="stamps" aria-label="Sellos ganados">
+      <small>Sellos</small>
+      <div class="stamp" style="--sc:var(--c1)" data-stamp="1">1</div>
+      <div class="stamp" style="--sc:var(--c2)" data-stamp="2">2</div>
+      <div class="stamp" style="--sc:var(--c3)" data-stamp="3">3</div>
+      <div class="stamp" style="--sc:var(--c4)" data-stamp="4">4</div>
+      <div class="stamp" style="--sc:var(--c5)" data-stamp="5">5</div>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+    <div class="book" id="book">
+      <!-- hojas ya leídas: quedan a la izquierda, fuera de foco; solo asoma su borde -->
+      <div class="stack" aria-hidden="true"></div>
+      <div class="slot" id="slot"></div>
+      <div class="leaf" id="leaf" hidden>
+        <div class="face front" id="leafF"><div class="blank"></div><div class="shade"></div></div>
+        <div class="face back" id="leafB"><div class="blank"></div><div class="shade"></div></div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="controls" aria-label="Pasar páginas">
+    <button class="nav-btn" id="prev" type="button" aria-label="Página anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="chips" id="chips">
+      <button class="chip" type="button" data-go="0" style="--tc:var(--cover)"><i>★</i><span>Inicio</span></button>
+      <button class="chip" type="button" data-go="2" style="--tc:var(--c1)"><i>1</i><span>Mi cuerpo</span></button>
+      <button class="chip" type="button" data-go="4" style="--tc:var(--c2)"><i>2</i><span>Un bebé</span></button>
+      <button class="chip" type="button" data-go="6" style="--tc:var(--c3)"><i>3</i><span>9 meses</span></button>
+      <button class="chip" type="button" data-go="8" style="--tc:var(--c4)"><i>4</i><span>Decidir</span></button>
+      <button class="chip" type="button" data-go="10" style="--tc:var(--c5)"><i>5</i><span>Cuidarme</span></button>
+      <button class="chip" type="button" data-go="12" style="--tc:var(--c2)"><i>?</i><span>Preguntas</span></button>
+    </div>
+    <span class="counter-lbl" id="counter"></span>
+    <button class="nav-btn" id="next" type="button" aria-label="Página siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </nav>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<!-- Almacén de páginas: se llena con content/*.html (ver assets/js/core/content.js) -->
+<div id="store"></div>
+
+<noscript><p style="padding:24px;text-align:center">Este libro necesita JavaScript para pasar las páginas.</p></noscript>
+</body>
+</html>

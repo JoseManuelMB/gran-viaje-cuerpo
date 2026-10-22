@@ -1,0 +1,77 @@
+/* LIBRO · una sola hoja apaisada a la vez, como un cuento infantil.
+   La hoja gira sobre el lomo (izquierda) y cae sobre las hojas ya leídas (.stack): esa página
+   izquierda, en blanco, se ve completa hasta donde alcance la pantalla, como un libro abierto.
+   Medidas: --pw/--ph = ancho/alto de la hoja (relativos al escenario, que es un contenedor). */
+.stage{min-height:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;container-type:size;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.book{--peek:clamp(12px,2.4vw,34px);--board:7px;
+  --pw:calc(100cqw - var(--peek)*1.5 - var(--board)*2);
+  --ph:calc(100cqh - var(--board)*2);
+  position:relative;width:var(--pw);height:var(--ph);margin-left:var(--peek);perspective:calc(var(--pw)*3)}
+/* pantalla amplia: hoja horizontal entre 1.32:1 y 1.7:1 */
+@media (min-width:900px) and (min-height:560px){
+  .book{--pw:min(100cqw - var(--peek)*1.5 - var(--board)*2, 1240px, (100cqh - var(--board)*2)*1.7);
+    --ph:min(100cqh - var(--board)*2, var(--pw)/1.32, 860px)}
+}
+/* navegadores sin unidades de contenedor (cqw/cqh): se mide contra la ventana restando las barras */
+@supports not (width:1cqw){
+  .book{--pw:calc(100vw - 32px - var(--peek)*1.5 - var(--board)*2);--ph:calc(100vh - 150px)}
+  @media (min-width:900px) and (min-height:560px){
+    .book{--pw:min(100vw - 32px - var(--peek)*1.5 - var(--board)*2, 1240px, (100vh - 150px)*1.7);--ph:min(100vh - 150px, var(--pw)/1.32, 860px)}
+  }
+}
+
+/* tapa dura: con el libro cerrado solo rodea la hoja; abierto, se extiende bajo las hojas leídas */
+.book::before{content:"";position:absolute;inset:calc(var(--board)*-1);left:-3px;background:var(--cover);border-radius:20px;
+  box-shadow:0 26px 50px -24px rgba(11,18,32,.6);transition:left .6s var(--ease-out)}
+.book.open::before{left:calc(-100% - var(--board))}
+
+.slot{position:absolute;inset:0}
+.stack{position:absolute;top:0;bottom:0;right:100%;width:100%;opacity:0;transition:opacity .4s var(--ease-out)}
+.book.open .stack{opacity:1}
+.leaf{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:left center;z-index:10}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.blank{position:absolute;inset:0;background:var(--page);border-radius:4px 16px 16px 4px}
+.shade{position:absolute;inset:0;pointer-events:none;opacity:0;z-index:3;border-radius:4px 16px 16px 4px}
+.front .shade{background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(0,0,0,0) 60%)}
+.back .shade{background:linear-gradient(270deg,rgba(0,0,0,.35),rgba(0,0,0,0) 60%);border-radius:16px 4px 4px 16px}
+
+/* papel: cuadrícula + sombra del lomo (a la izquierda en la hoja, a la derecha en su reverso) */
+.page,.stack,.back .blank{background-color:var(--page);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:26px 26px}
+.stack,.back .blank{border-radius:16px 4px 4px 16px;box-shadow:inset -30px 0 30px -18px var(--spine)}
+
+.page{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;border-radius:4px 16px 16px 4px;box-shadow:inset 30px 0 30px -18px var(--spine);
+  padding:clamp(18px,3vw,34px);display:flex;flex-direction:column;gap:14px;scrollbar-width:thin;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.pnum{margin-top:auto;padding-top:6px;font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums;text-align:center}
+
+/* Hoja a dos columnas (.page.duo > .col): texto a un lado y juego/ilustración al otro en pantalla amplia
+   y en cualquier pantalla acostada (celular o tableta de lado).
+   En pantalla angosta las columnas desaparecen (display:contents) y todo va en una sola columna;
+   ahí la columna .col.visual (ilustración) sube justo debajo del encabezado (.eyebrow, h2, .head, .lead).
+   Ese orden no cambia nada con dos columnas: dentro de cada columna los encabezados ya van primero. */
+.col{display:contents}
+.page.duo .col:not(.visual)>:not(.eyebrow,h2,.head,.lead){order:2}
+.page.duo .col.visual>*{order:1}
+.page.duo .pnum{order:3}
+@media (min-width:900px) and (min-height:560px), (orientation:landscape) and (min-width:640px){
+  .page.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);column-gap:clamp(20px,4vw,60px);align-items:center;align-content:center;align-content:safe center}
+  .page.duo .col{display:flex;flex-direction:column;gap:clamp(10px,2vh,16px);min-width:0}
+  .pnum{position:absolute;left:0;right:0;bottom:8px;margin:0;padding:0}
+}
+/* pantalla amplia: más aire y letra más grande */
+@media (min-width:900px) and (min-height:560px){
+  .page{padding:clamp(28px,3.4vw,46px) clamp(36px,4.6vw,66px) clamp(36px,3.8vw,50px);font-size:1.1rem}
+  .book .page h2{font-size:clamp(2.2rem,3.6vw,3rem)}
+  .page .lead{font-size:1.2rem}
+  .pnum{bottom:12px}
+}
+/* celular acostado: la hoja es muy bajita, así que todo un poco más compacto y sin número de página */
+@media (orientation:landscape) and (max-height:559px){
+  .page{padding:14px 20px;gap:10px;font-size:.92rem}
+  .book .page h2{font-size:1.45rem}
+  .page .lead{font-size:.98rem}
+  .badge{width:38px;height:38px;font-size:1.3rem}
+  .pnum{display:none}
+}

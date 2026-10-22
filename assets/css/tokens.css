@@ -1,0 +1,41 @@
+/* ==========================================================
+   TOKENS · colores, tipografía y movimiento.
+   Para cambiar la paleta edita --c1…--c5 (color fuerte) y
+   --c1s…--c5s (fondo suave). Hay que hacerlo en los tres bloques:
+   claro, oscuro por sistema y oscuro forzado (data-theme).
+   ========================================================== */
+:root{
+  --desk:#D9E4F1; --page:#FFFFFF; --grid:#E6EEF7; --line:#CFDBEA;
+  --ink:#1C2B4B; --muted:#56678A;
+  --cover:#22407A; --on-cover:#FFFFFF;
+  --c1:#E9464F; --c1s:#FDE2E3;
+  --c2:#E59A0C; --c2s:#FDF0D3;
+  --c3:#16958F; --c3s:#D6F2EF;
+  --c4:#6C5CE7; --c4s:#E7E4FD;
+  --c5:#2E9E5E; --c5s:#DDF3E5;
+  --skin:#F4C3A1; --skin-line:#C98B66;
+  --spine:rgba(28,43,75,.16);
+  --f-display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  /* movimiento (CSS). Las duraciones de GSAP están en assets/js/config.js */
+  --dur-micro:150ms; --dur-enter:550ms;
+  --ease-out:cubic-bezier(.2,.8,.2,1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --desk:#0B1220; --page:#172238; --grid:#1D2A44; --line:#2A3A58;
+    --ink:#ECF2FC; --muted:#A3B3CF; --cover:#1C3566; --on-cover:#FFFFFF;
+    --c1:#FF6B72; --c1s:#3B1E28; --c2:#FFBE3D; --c2s:#3A2E14;
+    --c3:#3CCFC6; --c3s:#123533; --c4:#9C8FFF; --c4s:#272448;
+    --c5:#5BD48B; --c5s:#173424; --skin:#E8B08C; --skin-line:#A86F4E;
+    --spine:rgba(0,0,0,.45); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --desk:#0B1220; --page:#172238; --grid:#1D2A44; --line:#2A3A58;
+  --ink:#ECF2FC; --muted:#A3B3CF; --cover:#1C3566; --on-cover:#FFFFFF;
+  --c1:#FF6B72; --c1s:#3B1E28; --c2:#FFBE3D; --c2s:#3A2E14;
+  --c3:#3CCFC6; --c3s:#123533; --c4:#9C8FFF; --c4s:#272448;
+  --c5:#5BD48B; --c5s:#173424; --skin:#E8B08C; --skin-line:#A86F4E;
+  --spine:rgba(0,0,0,.45); color-scheme:dark;
+}

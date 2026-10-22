@@ -1,0 +1,42 @@
+<!-- 12 mano de confianza -->
+<article class="page duo" data-key="hand" data-chip="12" style="--sc:var(--c5)">
+  <div class="col">
+    <div class="eyebrow" data-in>Para hacer juntos</div>
+    <h2 data-in>Mi mano de confianza</h2>
+    <p class="lead" data-in>Escribe en cada dedo a un adulto al que le puedas contar cualquier cosa. Papá va en el primero.</p>
+    <div class="hand-list" id="handList" data-in></div>
+    <details class="dad" data-in><summary>Nota para papá</summary>
+      <p>Ayúdale a elegir adultos de verdad confiables y repítele con calma que nunca va a estar en problemas por contarte algo.</p>
+    </details>
+  </div>
+  <div class="col visual">
+    <!-- La mano y los campos los arma assets/js/paradas/en-familia.js -->
+    <div class="hand" data-in>
+      <svg viewBox="0 0 300 330" id="handSvg" role="img" aria-label="Mi mano de confianza"></svg>
+    </div>
+  </div>
+  <div class="pnum">13</div>
+</article>
+
+<!-- 13 preguntas para papá -->
+<article class="page duo" data-key="ask" data-chip="12" style="--sc:var(--c2)">
+  <div class="col">
+    <div class="eyebrow" data-in>Ahora te toca a ti</div>
+    <h2 data-in>Preguntas para papá</h2>
+    <p class="lead" data-in>Escoge una tarjeta y házsela a papá en voz alta. Él te va a responder con la verdad. ¡Ninguna pregunta es tonta!</p>
+    <div class="row" data-in style="justify-content:space-between">
+      <span class="counter" id="askCount"></span>
+      <div class="row">
+        <button class="btn ghost" type="button" id="askShuffle">Al azar</button>
+        <button class="btn" type="button" id="askNext">Otra pregunta</button>
+      </div>
+    </div>
+  </div>
+  <div class="col visual">
+    <div class="deck" data-in>
+      <div class="ghostcard"></div>
+      <div class="qcard" id="askCard"><span class="lbl" id="askLbl"></span><p id="askText"></p></div>
+    </div>
+  </div>
+  <div class="pnum">14</div>
+</article>

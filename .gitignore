@@ -1,0 +1,13 @@
+# Herramientas locales
+.claude/
+node_modules/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp

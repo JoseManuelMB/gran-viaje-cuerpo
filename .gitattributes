@@ -1,0 +1,6 @@
+# Finales de línea LF en el repositorio (el sitio se sirve igual en cualquier sistema)
+* text=auto eol=lf
+*.svg text eol=lf
+*.png binary
+*.jpg binary
+*.webp binary

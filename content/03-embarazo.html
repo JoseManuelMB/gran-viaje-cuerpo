@@ -1,0 +1,76 @@
+<!-- 6 parada 3 intro -->
+<article class="page duo" data-key="p3a" data-chip="6" style="--sc:var(--c3)">
+  <div class="col">
+    <div class="head" data-in><span class="badge">3</span><div><div class="eyebrow">Parada 3 · El embarazo</div><h2>9 meses en la panza</h2></div></div>
+    <p class="lead" data-in>Dentro del útero, el bebé flota en un líquido calientito. Recibe comida y oxígeno de su mamá por un tubito llamado <b>cordón umbilical</b>.</p>
+    <details class="dad" data-in><summary>Nota para papá</summary>
+      <p>Una gran idea: enséñale fotos de cuando era bebé y cuéntale qué sentiste el día que la conociste.</p>
+    </details>
+  </div>
+  <div class="col">
+    <h3 data-in>Datos curiosos</h3>
+    <div class="facts">
+      <div class="factcard" data-in><span class="n">1</span><p>Tu <b>ombligo</b> es el lugar donde estaba el cordón umbilical. ¡Todos tenemos uno!</p></div>
+      <div class="factcard" data-in><span class="n">2</span><p>Dentro de la panza el bebé puede tener <b>hipo</b>, y la mamá lo siente como brinquitos.</p></div>
+      <div class="factcard" data-in><span class="n">3</span><p>Desde los 6 meses <b>oye</b> la voz de su familia, y al nacer la reconoce.</p></div>
+    </div>
+  </div>
+  <div class="pnum">7</div>
+</article>
+
+<!-- 7 parada 3 juego -->
+<article class="page duo" data-key="p3b" data-chip="6" style="--sc:var(--c3)">
+  <div class="col">
+    <div class="eyebrow" data-in>Toca la bolita y arrástrala por los meses</div>
+    <p class="fact" id="monthFact" aria-live="polite" data-in></p>
+    <div class="beat" id="beat" hidden><svg id="beatIc" viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9.3-9C1.1 8.6 3.3 5 6.8 5c2 0 3.4 1.1 4.2 2.4C11.8 6.1 13.2 5 15.2 5c3.5 0 5.7 3.6 4.1 7-2.3 4.6-9.3 9-9.3 9z" fill="currentColor"/></svg>Su corazón ya late</div>
+    <!-- Línea de meses: se toma con clic o dedo y se arrastra; también responde a las flechas del teclado -->
+    <div class="months" id="months" data-in data-noswipe role="slider" tabindex="0" aria-label="Mes del embarazo" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1">
+      <div class="m-tip" id="mTip" aria-hidden="true">
+        <span class="m-tip-emo" id="fruitEmo"></span>
+        <span class="m-tip-txt"><small>Mide como</small><b id="fruitName"></b></span>
+        <span class="m-tip-cm" id="cmLbl"></span>
+      </div>
+      <div class="m-track"><div class="m-fill" id="mFill"></div><span class="m-thumb" id="mThumb"></span></div>
+      <div class="m-stops" id="mStops" aria-hidden="true"></div>
+    </div>
+    <div class="row" data-in>
+      <button class="btn btn3d" type="button" id="womb3d" aria-label="Ver el embarazo en 3D a pantalla completa" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8 20.5 7.4v9.2L12 21.2 3.5 16.6V7.4z"/><path d="M3.5 7.4 12 12l8.5-4.6M12 12v9.2"/></svg>
+        Ver en 3D
+      </button>
+    </div>
+  </div>
+  <div class="col visual">
+    <div class="womb" data-in>
+      <div class="month-num" id="monthNum" aria-hidden="true">1<small>mes</small></div>
+      <!-- El bebé (3 etapas) y el cordón los mueve assets/js/paradas/embarazo.js -->
+      <svg viewBox="0 0 300 300" aria-label="El bebé dentro del útero">
+        <defs>
+          <radialGradient id="gFluid" cx="45%" cy="40%" r="65%"><stop offset="0" style="stop-color:var(--page)"/><stop offset=".55" style="stop-color:var(--c3s)"/><stop offset="1" style="stop-color:var(--c3);stop-opacity:.4"/></radialGradient>
+          <!-- luz y sombra sobre la piel del bebé (encima del color --skin) -->
+        <radialGradient id="gSkin" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" style="stop-color:var(--skin-line)" stop-opacity=".3"/></radialGradient>
+        <radialGradient id="gPlac" cx="50%" cy="40%" r="60%"><stop offset="0" style="stop-color:var(--c1);stop-opacity:.55"/><stop offset="1" style="stop-color:var(--c1)"/></radialGradient>
+        </defs>
+        <!-- pared del útero y bolsa con líquido -->
+        <circle cx="150" cy="150" r="144" fill="var(--c1s)" stroke="var(--c1)" stroke-width="3"/>
+        <circle cx="150" cy="150" r="136" fill="none" stroke="var(--c1)" stroke-width="4" stroke-dasharray="1 7" stroke-linecap="round" opacity=".35"/>
+        <circle cx="150" cy="150" r="126" fill="url(#gFluid)" stroke="var(--c3)" stroke-width="2.5"/>
+        <circle id="wave" cx="150" cy="150" r="117" fill="none" stroke="var(--c3)" stroke-width="2" stroke-dasharray="4 9" opacity=".55"/>
+        <ellipse cx="96" cy="70" rx="30" ry="12" transform="rotate(-35 96 70)" fill="#fff" opacity=".35"/>
+        <!-- placenta -->
+        <g>
+          <path d="M188 40 Q214 24 240 40 Q262 56 256 82 Q236 96 212 88 Q190 80 186 60 Z" fill="url(#gPlac)" stroke="var(--c1)" stroke-width="2"/>
+          <g fill="var(--c1)" opacity=".55"><circle cx="208" cy="52" r="6"/><circle cx="226" cy="46" r="5"/><circle cx="240" cy="62" r="6"/><circle cx="222" cy="72" r="5"/></g>
+          <text x="166" y="36" text-anchor="end" font-family="Atkinson Hyperlegible, sans-serif" font-size="11" font-weight="700" fill="var(--c1)">placenta</text>
+        </g>
+        <g fill="var(--c3)" opacity=".5"><circle class="bub" cx="90" cy="240" r="5"/><circle class="bub" cx="210" cy="246" r="4"/><circle class="bub" cx="232" cy="200" r="6"/><circle class="bub" cx="70" cy="190" r="3"/></g>
+        <!-- cordón umbilical: se recalcula para seguir al bebé -->
+        <path id="cord" fill="none" stroke="var(--c4)" stroke-width="7" stroke-linecap="round"/>
+        <path id="cordStripe" fill="none" stroke="#fff" stroke-width="7" stroke-dasharray="2 6" opacity=".55"/>
+        <g id="baby"></g>
+      </svg>
+    </div>
+  </div>
+  <div class="pnum">8</div>
+</article>

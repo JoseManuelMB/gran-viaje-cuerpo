@@ -1,0 +1,23 @@
+/* COMPONENTES · piezas reutilizables en varias paradas (títulos, notas para papá, botones) */
+.eyebrow{font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;color:var(--sc)}
+.page h2{font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:800}
+.page h3{font-size:1.3rem}
+.lead{font-size:1.06rem}
+.muted{color:var(--muted);font-size:.92rem}
+.badge{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--sc);color:#fff;font-family:var(--f-display);font-weight:800;font-size:1.6rem;transform:rotate(-6deg);flex:none}
+.head{display:flex;gap:12px;align-items:center}
+.art{width:100%;max-width:100%}
+.art svg{display:block;width:100%;height:auto;max-height:240px}
+
+details.dad{border-radius:14px;background:var(--page);border:2px dashed var(--sc)}
+details.dad summary{cursor:pointer;padding:9px 12px;font-weight:700;font-size:.95rem;list-style:none;display:flex;align-items:center;gap:8px}
+details.dad summary::-webkit-details-marker{display:none}
+details.dad summary::before{content:"+";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--sc);color:#fff;font-weight:800}
+details.dad[open] summary::before{content:"–"}
+details.dad p{padding:0 12px 12px 42px;font-size:.92rem;color:var(--muted)}
+
+.btn{border:0;border-radius:14px;padding:10px 18px;font-weight:700;background:var(--sc,var(--c4));color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.28);box-shadow:0 4px 0 color-mix(in srgb,var(--sc,var(--c4)) 60%,#000);transition:transform var(--dur-micro) var(--ease-out)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 color-mix(in srgb,var(--sc,var(--c4)) 60%,#000)}
+.btn.ghost{background:var(--page);color:var(--ink);border:2px solid var(--line);box-shadow:none}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
